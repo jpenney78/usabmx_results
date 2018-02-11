@@ -10,21 +10,23 @@ import sys
 url = sys.argv[-1]
 page = urllib2.urlopen(url)
 soup = BeautifulSoup(page, 'html.parser')
-groups = soup.findAll('h4', class_='race-result-group')
+# groups = soup.findAll('h4', class_='race-result-group')
 
 days = soup.findAll('div', id=re.compile('^rday_'))
 
-print 'Race, Class, Place, Name, City, State, Sponsor'
+#print 'Race, Class, Place, Name, City, State, Sponsor'
+print 'Name, Place, Class'
 for day in days:
     title = day.find('h3', class_='race-result-title')
-    try:
-        title = title.text
-    except:
-        break
-    # print 'RACE', title
 
+    title = title.text
+
+    print '\n\n\nRACE: {}, ,'.format(title)
+
+    groups = day.findAll('h4', class_='race-result-group')
     uls = day.findAll('ul', class_='race-result-list')
     count = 0
+    places = dict()
     for ul in uls:
         group = groups[count].text
         class_name = group.split('Total Riders')[0].rstrip()
@@ -45,10 +47,18 @@ for day in days:
                 rider_state = rider_info[-1]
                 if rider_state == ' MO' or rider_state == ' KS':
                     #print '{},{},{},{},{},{},{}'.format(title, class_name, place.text, rider_name, rider_city, rider_state, rider_sponsor)
+                    try:
+                        places[str(place.text)] += 1
+                    except:
+                        places[str(place.text)] = 1
+
                     print '{}, {}, {}'.format(rider_name, place.text, class_name)
             else:
                 pass
 
 
         count += 1
+    print '\n\nPlace Count:'
+    for k,v in places.iteritems():
+        print '{} - {}'.format(k,v)
 
