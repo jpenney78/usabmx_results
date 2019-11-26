@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Get results</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.results_url.label }}<br>
+            {{ form.results_url(size=32) }}
+        </p>
+        <p>
+            {{ form.state_list.label }}<br>
+            {{ form.state_list(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

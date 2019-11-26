@@ -4,3 +4,4 @@ re
 sys
 collection
 flask
+flask-wtf

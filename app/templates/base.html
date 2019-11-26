@@ -1,14 +1,19 @@
 <html>
-    <head>
-      {% if title %}
-      <title>{{ title }} - USA BMX Results</title>
-      {% else %}
-      <title>USA BMX Results</title>
-      {% endif %}
-    </head>
-    <body>
-        <div>Home: <a href="/index">Home</a></div>
-        <hr>
-        {% block content %}{% endblock %}
-    </body>
+
+<head>
+  {% if title %}
+  <title>{{ title }} - USA BMX Results</title>
+  {% else %}
+  <title>USA BMX Results</title>
+  {% endif %}
+</head>
+
+<body>
+  <div>Home: <a href="/index">Home</a></div>
+  <div>Request: <a href="/request">Request</a></div>
+
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+
 </html>
