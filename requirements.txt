@@ -1,7 +1,4 @@
 bs4
-urllib2
-re
-sys
-collection
+urllib3
 flask
 flask-wtf
